@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication46
+{
+    class Program
+    {       
+        delegate int Min(int q, int w, int e);
+        delegate int Max(int q, int w, int e);
+        delegate int Abs(int q, int w, int e);
+        delegate int Sum(int q, int w, int e);
+        delegate int Mul(int q, int w, int e);
+        static void Main(string[] args)
+        {
+            Min min = (q, w, e) => Math.Min((Math.Min(q, w)), e);
+            Max max = (q, w, e) => Math.Max((Math.Max(q, w)), e);
+            Sum sum = (q, w, e) => q + w +e;
+            Mul mul = (q, w, e) => q * w * e;
+            Abs abs = (q, w, e) => (q + w + e) / 3;
+            int i = Convert.ToInt32(Console.ReadLine());
+            int j = Convert.ToInt32(Console.ReadLine());
+            int k = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Минимальное: " + min(i, j, k));
+            Console.WriteLine("Максимальное: " + max(i, j, k));
+            Console.WriteLine("Сумма параметров: " + sum(i, j, k));
+            Console.WriteLine("Произведние параметров: " + mul(i, j, k));
+            Console.WriteLine("Среднее арифметическое: " + abs(i, j, k));
+            Console.ReadKey();
+        }
+
+    }
+
+}
