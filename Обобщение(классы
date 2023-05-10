@@ -1,0 +1,89 @@
+using System;
+using System.IO;
+using System.Collections;
+using System.Reflection.Metadata;
+using System.Xml.Linq;
+
+
+internal class Program
+{
+    class MyGenericClass<T> where T : IComparable
+    {
+        private List<T> data = new List<T>();
+
+        public bool AddData(params T[] values)
+        {
+            data.AddRange(values);
+            return true;
+        }
+
+        public bool RemoveData(T value)
+        {
+            data.Remove(value);
+            return true;
+        }
+
+        public bool RemoveData(params T[] values)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                data.Remove(values[i]);
+                return true;
+            }
+            return true;
+        }
+        public bool Get(T item)
+        {
+            int i = Convert.ToInt32(item);
+            Console.WriteLine();
+            Console.WriteLine("Элемент в массиве по данному индексу: " + data[i]);
+            return true;
+        }
+    }
+    static void Main(string[] args)
+    {
+        MyGenericClass<int> array = new MyGenericClass<int>();
+        bool Menu = true;
+        do
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("[1] - Добавить элемент в массив");
+            Console.WriteLine();
+            Console.WriteLine("[2] - Удалить элемент из массива");
+            Console.WriteLine();
+            Console.WriteLine("[3] - Получение по индексу");
+            Console.WriteLine();
+            Console.WriteLine("[0] - Выход из программы");
+            Console.WriteLine();
+            int d = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            switch (d)
+            {
+                case 1:
+                    Console.WriteLine("Введите элемент");
+                    int n = Convert.ToInt32(Console.ReadLine());
+                    array.AddData(n);
+                    break;
+                case 2:
+                    Console.WriteLine("Введите элемент");
+                    int j = Convert.ToInt32(Console.ReadLine());
+                    array.RemoveData(j);
+                    break;
+                case 3:
+                    Console.WriteLine("Введите индекс");
+                    int k = Convert.ToInt32(Console.ReadLine());
+                    array.Get(k);
+                    Console.ReadKey();
+                    break;
+                case 0:
+                    Menu = false;
+                    break;
+            }
+            Console.Clear();
+        }
+        while (Menu);
+    }
+}
+    
+
+
