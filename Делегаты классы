@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication11
+{
+    public class Auto
+    {
+        public string model;
+        public string number;
+
+    }
+    class Garrage
+    {
+        public List<string> Cars = new List<string>();
+
+    }
+    
+     public delegate string Washing(string Car);
+   
+    class Program
+    {
+        static void Main(string[] args){
+            Auto camry = new Auto();
+            camry.model = "Toyota Camry 2021";
+            camry.number = "н800мс";
+            Auto lada = new Auto();
+            lada.model = "VAZ2107";
+            lada.number = "к625нв";
+            Garrage garage = new Garrage();
+            garage.Cars.Add(camry.model);
+            garage.Cars.Add(lada.model);
+            Console.WriteLine("Машины в гараже: ");
+            foreach (string s in garage.Cars){
+                Console.Write(s+ ", ");
+            }
+            Console.WriteLine();
+            Washing wash = new Washing(WashCar);
+            string CamryWashed = WashCar(camry.model);
+            string LadaWashed = WashCar(lada.model);
+            Console.WriteLine(CamryWashed);
+            Console.WriteLine(LadaWashed);
+            
+            Console.ReadKey();
+        }
+        static public string WashCar(string s)
+        {
+            string f =  "Машина " + s + " помыта";
+            return f;
+            
+        }
+    }
+}
