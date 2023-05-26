@@ -1,0 +1,32 @@
+using System.IO;
+namespace Linq
+{
+    class Program
+    {
+        static void Main()
+        {
+            int[] Arr = { 1, 5, 7, 22, -4, -8, 11, 0, 3 };
+            Console.WriteLine("Данный массив: ");
+            foreach (int i in Arr) Console.Write(i + " ");
+            Console.WriteLine();
+            var plus = from x in Arr
+                       where x > 0
+                       select x;
+            var notnull = from x in Arr
+                          where x != 0
+                          select x;
+            var minmax = from x in Arr
+                         orderby x
+                         select x;
+            var even = from x in Arr
+                         where x%2 == 0
+                         select x;
+            Console.WriteLine("Количество положительных " + plus.Count());
+            Console.WriteLine("Количество ненулевых " + notnull.Count());
+            Console.WriteLine("Количество четных " + even.Count());
+            Console.WriteLine("Максимальное значение: " + minmax.Max() + ", минимальное значение: " + minmax.Min());
+        }
+
+    }
+}
+    
